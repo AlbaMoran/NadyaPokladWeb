@@ -49,7 +49,7 @@ export default function MenuItemCard({ item, deleteItem, setError, setSuccessful
 
   return (
     <>
-    <Card className={[cardClass, 'card-edition-contact', 'mt-2', 'mb-2']} fluid  >
+    <Card className={[cardClass, 'card-edition-contact', 'mt-2', 'mb-2']}   >
 
       <Col xs={12}>
         <Card.Body style={{ fontSize: '14px' }}   >
