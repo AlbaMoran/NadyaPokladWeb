@@ -1,33 +1,39 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { db, storage } from "../../../firebase-config";
 import { doc, updateDoc } from "firebase/firestore";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { deleteFileFromStorage } from "../FirebaseHooks/Storage";
 import { Card, Row, Col, Form, Button, Container, Modal } from "react-bootstrap";
 import '../../../styles/App.css';
+import useWorksItems from "../FirebaseHooks/useWorksItems";
 
 export default function MenuItemCard({ item, deleteItem, setError, setSuccessfull }) {
+
+  let { 
+    showConfirmDelete, 
+    update, 
+    setUpdate, 
+    setShowConfirmDelete,
+    handleShowConfirmDelete, 
+    handleClose, 
+    handleCancel, 
+    handleCancelDeletion
+     } = useWorksItems()
+
   const [description, setDescription] = useState(item.description);
   const [orderDisplay, setOrderDisplay] = useState(item.orderDisplay);
   const [image, setImage] = useState(item.image);
   const [imageFileName, setImageFileName] = useState(item.imageFileName);
   const [itemId, setItemId] = useState(item.id);
   
-  const [update, setUpdate] = useState(false);
   const [updatedDescription, setUpdatedDescription] = useState(item.description);
   const [updatedOrderDisplay, setUpdatedOrderDisplay] = useState(item.orderDisplay);
   const [updatedImage, setUpdatedImage] = useState(null);
-  const [showConfirmDelete, setShowConfirmDelete] = useState(false);
+  
 
   const itemDocRef = doc(db, "TheArtist", itemId);
 
-  const handleShowConfirmDelete = () => {
-    setShowConfirmDelete(true);
-  }
-
-  const handleClose = () => setShowConfirmDelete(false);
-  const handleCancelDeletion = () => setShowConfirmDelete(false)
-
+ 
   const handleDelete = () => {
     deleteItem(itemId, imageFileName);
     setShowConfirmDelete(false);
@@ -155,6 +161,10 @@ export default function MenuItemCard({ item, deleteItem, setError, setSuccessful
                 <Button onClick={handleShowConfirmDelete} variant="btn" className="m-2" size="md">
                   Delete
                 </Button>
+
+                {update &&
+               <Button onClick={handleCancel} variant="btn" className="mt-2 mb-3 mx-2">   Cancel  </Button>
+                }
 
                 <Button
                   onClick={handleUpdate}

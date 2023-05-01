@@ -58,7 +58,7 @@ export default function AddMenuItem({ menuItems, setAddMenuItemVisible }) {
           value={contactType}
           onChange={(e) => setContactType(e.target.value)}
         >
-          <option value="" disabled selected hidden>Select contact type</option>
+          <option value="" disabled hidden>Select contact type</option>
           <option value="Email">E-mail address</option>
           <option value="Youtube">YouTube</option>
           <option value="SocialMedia">Social media</option>
