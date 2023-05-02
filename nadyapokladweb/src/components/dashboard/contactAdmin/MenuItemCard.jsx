@@ -42,6 +42,9 @@ export default function MenuItemCard({ item, deleteItem, setError, setSuccessful
         .then(() => {
           setDescription(updatedDescription);
           setSuccessfull("Item updated succesfully!");
+          setTimeout(() => {
+            setSuccessfull(null);
+          }, 5000);
         })
         .catch((error) => {
           setError(error.message);
@@ -96,16 +99,16 @@ export default function MenuItemCard({ item, deleteItem, setError, setSuccessful
         <Card.Body className="card-end-buttons">
           <Col style={{ margin: 'auto' }} >
 
-            <Button onClick={handleShowConfirmDelete} variant="btn" className="mt-2 mb-3"> Delete</Button>
+            <Button onClick={handleShowConfirmDelete} variant="btn" className="mt-2 mb-2"> Delete</Button>
            
             {update &&
-               <Button onClick={handleCancel} variant="btn" className="mt-2 mb-3 mx-2">   Cancel  </Button>
+               <Button onClick={handleCancel} variant="btn" className="mt-2 mb-2 mx-1">   Cancel  </Button>
                 }
             
             <Button
               onClick={handleUpdate}
               variant={update ? "btn" : "btn"}
-              className="mt-2 mx-2 mb-3"
+              className="mt-2 mx-1 mb-2"
             >
               {update ? (
                 <>Save</>

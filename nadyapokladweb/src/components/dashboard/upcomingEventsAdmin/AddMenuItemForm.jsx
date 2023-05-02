@@ -66,6 +66,10 @@ export default function AddMenuItem({ menuItems }) {
       };
     } else {
       setError("Form has unresolved errors!");
+      setTimeout(() => {
+        setError(null);
+      }, 5000);
+    
     }
   }
 

@@ -22,14 +22,13 @@ export default function MenuItemCard({ item, deleteItem, setError, setSuccessful
     handleCancel, 
     handleCancelDeletion } = useWorksItems()
   
-
-
+  const[ imageDefault, setImageDefault] = useState("https://firebasestorage.googleapis.com/v0/b/nadyapokladsite.appspot.com/o/General%2FNP.png?alt=media&token=967d7a10-db01-44a3-83c2-fe0595197e93");
   const [itemId, setItemId] = useState(item.id);
-  const [category, setCategory] = useState(item.category)
-  const [date, setDate] = useState(item.date)
+  const [category, setCategory] = useState(item.category);
+  const [date, setDate] = useState(item.date);
   const [title, setTitle] = useState(item.title);
   const [description, setDescription] = useState(item.description);
-  const [url, setUrl] = useState(item.url)
+  const [url, setUrl] = useState(item.url);
   const [image, setImage] = useState(item.image);
   const [imageFileName, setImageFileName] = useState(item.imageFileName);
 
@@ -116,7 +115,7 @@ export default function MenuItemCard({ item, deleteItem, setError, setSuccessful
     setUpdate(!update);
   };
    
-  const imageDefault =  <img src="https://firebasestorage.googleapis.com/v0/b/nadyapokladsite.appspot.com/o/General%2FNP.png?alt=media&token=967d7a10-db01-44a3-83c2-fe0595197e93" alt="default_image" />
+  
 
   const handleChangeImageInput = (e) => {
     const file =   e.target.files[0] 
@@ -133,30 +132,43 @@ export default function MenuItemCard({ item, deleteItem, setError, setSuccessful
   return (
     <>
       <Card className= 'card-edition-works menu-item-card-text-event" mt-1 mb-1' >
-        <Card.Img
+        
+     { (image !== null) ?
+        (<Card.Img
           variant="top"
           src={image}
           alt={title}
           className="menu-item-card-image-event"
-        />
+        />)
+        :(<Card.Img
+          variant="top"
+          src={imageDefault}
+          alt={title}
+          className="menu-item-card-image-event"
+          />
+
+        )
+      }
          {
             (updatedCategory !== "Performances") 
               &&
             <Col xs={12}>
             <Card.Body style={{ fontSize: '14px' }} className='card-body-event'  >
               <Form.Label>Image </Form.Label>
-
-              {update === true && (
+              
+              {
+              (update === true) && (
                 <Form.Control
                   type="file"
                   placeholder="Select an image"
-                
                   onChange={(e) => handleChangeImageInput(e)}
                   id="input-update-image"
                   accept=".jpg, .jpeg, .png, .jfif"
                   size="sm"
                 />
-                )}
+                )
+                
+                }
                      
              </Card.Body>
           </Col>
