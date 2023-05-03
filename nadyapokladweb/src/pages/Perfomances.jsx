@@ -6,7 +6,7 @@ import useHookToRender from '../components/dashboard/FirebaseHooks/useHookToRend
 export function Perfomances() {
 
   const { performancesPost } = useHookToRender()
-  //console.log(performancesPost )
+  
 
   return (
     <>

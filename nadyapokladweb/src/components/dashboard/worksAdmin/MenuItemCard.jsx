@@ -303,10 +303,6 @@ export default function MenuItemCard({ item, deleteItem, setError, setSuccessful
           </Card.Body>
         </Col>
 
-  
-         
-            
-
         <Col xs={12}>
           <Card.Body className="card-end-buttons">
             <Col style={{ margin: 'auto' }} >

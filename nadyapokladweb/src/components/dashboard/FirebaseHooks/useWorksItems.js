@@ -171,7 +171,7 @@ export default function useWorksItems (  ) {
 
   function validateUrl(url) {
     const urlRegex = /^https?:\/\/\S+$/i;
-    // const urlRegex = "https://www.";
+    
   
     if (urlRegex.test(toLowerCase(url))) {
      
@@ -216,7 +216,6 @@ export default function useWorksItems (  ) {
     addItem,
     categories, setCategories,
     validateUrl,
-    
     handleShowConfirmDelete,
     handleClose,
     handleCancelDeletion, handleCancel, 

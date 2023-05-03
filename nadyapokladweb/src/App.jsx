@@ -9,10 +9,14 @@ function App() {
     <>
     <UserAuthContextProvider>
         <Header />
+        <div className="d-flex flex-column min-vh-100">
+          <main className="flex-grow-1">
           <Generic>
             <Home />      
           </Generic>
-        <Footer />
+          </main>
+            <Footer />
+        </div>
     </UserAuthContextProvider>
     </>
   );

@@ -16,7 +16,7 @@ const SectionItemList = () => {
         const queryHomeSectionItem = query(homeSectionItem, orderBy('name', 'desc'));
         getDocs(queryHomeSectionItem)
             .then(res => setItemHome(res.docs.map(doc => ({ id: doc.id, ...doc.data() }))));
-        // console.log(itemHome)
+   
     }, []);
 
     useEffect(() => {

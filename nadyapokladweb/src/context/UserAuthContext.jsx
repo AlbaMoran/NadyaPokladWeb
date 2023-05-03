@@ -53,7 +53,6 @@ export function UserAuthContextProvider({ children }) {
     setIsLoggedIn(false);
     localStorage.removeItem(JSON.stringify("is-Logged-In"), false);
     setUser('')
-  //  console.log('is Logged In:', isLoggedIn)
     return signOut(auth);
   }
 

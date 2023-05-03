@@ -8,7 +8,7 @@ import useWorksItems from "../FirebaseHooks/useWorksItems";
 export default function AddMenuItem({ menuItems }) {
 
   const defaultImageUrl = "https://firebasestorage.googleapis.com/v0/b/nadyapokladsite.appspot.com/o/General%2FNP.png?alt=media&token=967d7a10-db01-44a3-83c2-fe0595197e93"
-  // const imageDefault = <img src={defaultImageUrl} alt="Default" />;
+
 
   let { categories ,
         fileValid, setFileValid,
@@ -95,12 +95,12 @@ export default function AddMenuItem({ menuItems }) {
   return (
     <Form
       onSubmit={submitForm}
-      className="menu-add-form"
+      className="menu-add-form "
       data-testid="add-menu-item-form"
     >
       <Row>
         <Col>
-          <Form.Group className="mb-3">
+          <Form.Group className="mb-3 menu-add-form-input">
             <Form.Label htmlFor="enabledSelect">Select a Category</Form.Label>
 
             <Form.Select id="enabledSelect" onChange={(e) => setCategory(e.target.value)}>

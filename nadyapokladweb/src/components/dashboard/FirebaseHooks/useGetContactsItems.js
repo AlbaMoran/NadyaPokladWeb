@@ -119,17 +119,6 @@ export default function useGetContactsItems() {
     return deleted;
   };
 
-  // const deleteObjectFromStorage = async (imageFileName) => {
-  //   let deleted = false;
-  //   const fileRef = ref(storage, "UpcomingEvents/" + imageFileName);
-  //   await deleteObject(fileRef)
-  //     .then(() => {
-  //       deleted = true;
-  //     })
-  //     .catch((error) => {});
-  //   return deleted;
-  // };
-
   return {
     data,
     setData,

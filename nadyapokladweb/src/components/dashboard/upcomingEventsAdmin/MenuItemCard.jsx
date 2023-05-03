@@ -306,17 +306,7 @@ export default function MenuItemCard({ item, deleteItem, setError, setSuccessful
                   <>Edit</>
                 </Button>
                 }
-              {/* <Button
-                onClick={handleUpdate}
-                variant={update ? "btn" : "btn"}
-                className="mt-2 mx-2 mb-3"
-                >
-                {update ? (
-                  <>Save</>
-                  ) : (
-                    <>Edit</>
-                    )}
-              </Button> */}
+             
             </Col>
           </Card.Body>
         </Col>  

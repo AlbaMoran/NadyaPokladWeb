@@ -62,7 +62,7 @@ export default function AddMenuItem({ menuItems }) {
       const addedMenuItem = menuItems.addItem(item, imageFile);
       if (addedMenuItem) {
         clearInputStates();
-      // Agregar la función de Cancel/Close Add Item form acá también
+      
       };
     } else {
       setError("Form has unresolved errors!");
