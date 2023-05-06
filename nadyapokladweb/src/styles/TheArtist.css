@@ -1,7 +1,8 @@
 .image{
     min-width: 290px ; 
+    max-width: 350px;
     min-height:290px;
-     height: 400px; 
+    max-height: 400px; 
     margin: auto;
     margin-top: 10px;
     margin-bottom: 20px;

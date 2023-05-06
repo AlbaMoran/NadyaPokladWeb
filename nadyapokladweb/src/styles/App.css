@@ -184,7 +184,8 @@ span.navbar-toggler-icon {
 
 .loginContainer{
     max-width: 500px;
-    margin-bottom: 150px;
+    margin-bottom: 10px;
+    margin-top: 20px;
 }
 .login-title{
     border-bottom:1px solid #ACD8EC !important;
