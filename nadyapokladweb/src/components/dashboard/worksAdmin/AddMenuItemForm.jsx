@@ -27,6 +27,7 @@ export default function AddMenuItem({ menuItems }) {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   
+  
 
   useEffect(() => {
     setError(menuItems.error);
@@ -207,8 +208,7 @@ export default function AddMenuItem({ menuItems }) {
                            
            
         {
-        (category !== "Performances") 
-        &&
+       
         <>                 
           <Form.Label>Image</Form.Label>
             <Form.Control
@@ -218,9 +218,9 @@ export default function AddMenuItem({ menuItems }) {
             accept=".jpg, .jpeg, .png, .jfif, .mov, .mp4"
             key={inputKey}
             onChange={(e) => handleFileChange(e)}
-            // src={URL.createObjectURL(imageFile)}
-            src={(imageFile)}
-          //  isInvalid={!fileValid}
+            //src={URL.createObjectURL(imageFile)}
+            //src={(imageFile)}
+            isInvalid={!fileValid}
             />
             
           <Form.Control.Feedback type="invalid">
@@ -234,45 +234,38 @@ export default function AddMenuItem({ menuItems }) {
 
         </Col>
 
-        {
-        (category === "Performances") 
-        ?
-        <Col className="menu-item-container-image-preview">
-          <Form.Label>Preview image:</Form.Label>
-          <Container className="menu-item-card-preview">
-           
-              <Image
-                className="preview-image"
-                width="auto"
-                height="250px"
-                src= {defaultImageUrl}
-              />
-            
-          </Container>
-        </Col>
-        :
-        <Col className="menu-item-container-image-preview">
+        <Col sm={12} md={6} lg={6}>
         <Form.Label>Preview image:</Form.Label>
         <Container className="menu-item-card-preview">
-        {imageFile !== null && (
+        {
+          (imageFile !== null) ?
+         
+            <Image
+              className="preview-image"
+              width="auto"
+              height="250px"
+              src={URL.createObjectURL(imageFile)}
+            />
+          
+              :
               <Image
-                className="preview-image"
-                width="auto"
-                height="250px"
-                src={URL.createObjectURL(imageFile)}
-              />
-            )}
-           
+              className="preview-image"
+              width="auto"
+              height="250px"
+              src={defaultImageUrl}
+            />
+
+
+
+             }           
         </Container>
         </Col>
-        }
+     
         
       </Row>
-     
-     
-     
+             
       <Row>
-        <Col className="menu-form-submit-container">
+        <Col className="menu-form-submit-container mt-2">
           <Button
             variant="btn"
             type="submit"

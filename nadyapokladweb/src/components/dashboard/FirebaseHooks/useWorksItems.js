@@ -16,7 +16,7 @@ export default function useWorksItems (  ) {
   const [urlError, setUrlError ] = useState(false)
   const [formValid, setFormValid] = useState(false);
   const [formError, setFormError] = useState(false);
-  
+  const [fileValid, setFileValid] = useState(true);
 
 
   useEffect(() => {
@@ -224,6 +224,7 @@ export default function useWorksItems (  ) {
     formError, setFormError,
     formValid, setFormValid,
     urlError, setUrlError,
+    fileValid, setFileValid,
     
   };
 }
