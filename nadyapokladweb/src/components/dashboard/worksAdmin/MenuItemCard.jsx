@@ -286,12 +286,12 @@ export default function MenuItemCard({ item, deleteItem, setError, setSuccessful
 
         <Col xs={12}>
           <Card.Body style={{ fontSize: '14px' }}  className='card-body-event'>
-            <Form.Label>description</Form.Label>
-            <Card.Text className='textOverflow'  >
+            <Form.Label>Description</Form.Label>      
+            <Card.Text className='textOverflow'>
               {update ? (
-                <Form.Control 
-                  type="textarea " 
+                <Form.Control                
                   defaultValue={description}
+                  as="textarea" rows={7} 
                   placeholder="Enter the text that will appear "
                   onChange={(e) => setUpdatedDescription(e.target.value)}
                   size="sm"
