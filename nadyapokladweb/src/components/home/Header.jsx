@@ -28,7 +28,7 @@ export const Header = () => {
     try {
       await logOut();
       setLogged(false);
-      navigate("/login_admin");
+      navigate("/admin");
     } catch (err) {
       console.log(err.message);
     };
@@ -81,11 +81,7 @@ export const Header = () => {
                     <Navbar.Text className="link"><Link to="/upcoming_events" className="link link-header" onClick={closeOffcanvas}>Upcoming events</Link></Navbar.Text>
                     <Navbar.Text className="link"><Link to="/contact" className="link link-header" onClick={closeOffcanvas}>Contact</Link></Navbar.Text>
                     <Nav className="justify-content-end ">
-                      {!(user && user.email) ?
-                        <Navbar.Text className="link">
-                          <Link to="/login_admin" className="link link-header" onClick={closeOffcanvas}>Login</Link>
-                        </Navbar.Text>
-                        :
+                      {(user && user.email) &&
                         <>
                           <Navbar.Text className="link"> <Link to="/dashboard" className="link link-header">  Dashboard </Link> </Navbar.Text>
                           <Navbar.Text className="link" onClick={handleLogout} > Sign Out     </Navbar.Text>

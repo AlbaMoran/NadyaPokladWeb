@@ -20,7 +20,7 @@ function Generic() {
             <Route exact path="/upcoming_events" element={<UpcomingEvents />} />    
             <Route exact path="/Perfomances" element={<Perfomances />} />    
             <Route exact path="/contact" element={<Contact />} />       
-            <Route exact path="/login_admin" element={<LoginAdmin />} />
+            <Route exact path="/admin" element={<LoginAdmin />} />
             <Route exact path="/dashboard/*" element={<DashboardAdmin/>}/>
             <Route exact path="/resetPassword" element={<ForgotPassword />} />  
             <Route path="/upcoming_events/:id" element={<UpcomingEvents />} />    

@@ -6,7 +6,7 @@ const ProtectedRoute = ({ children }) => {
     let { user } = useUserAuth();
     
     if (user === null) {
-        return <Navigate to="/login_admin" />;
+        return <Navigate to="/admin" />;
     }
     return children;
 }

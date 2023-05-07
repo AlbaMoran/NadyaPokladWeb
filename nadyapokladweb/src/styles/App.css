@@ -219,14 +219,15 @@ span.navbar-toggler-icon {
     margin-top: 20px;
     text-align: center;
     justify-items: center;
+    margin-bottom: 50px;
 
 }
 
 .not-found-img{
-    padding: 0 !important;
-    min-width: 290px; 
-    width: 900px; /* ancho de la imagen */
-    height: 200px; /* altura de la imagen */
+    padding: 0 !important; 
+    min-width: 300px; 
+    max-width: 900px; /* ancho de la imagen */
+    max-height: 300px; /* altura de la imagen */
     text-align:center;
     border:#ACD8EC 2px solid;
     border-top-color:  #ACD8EC
