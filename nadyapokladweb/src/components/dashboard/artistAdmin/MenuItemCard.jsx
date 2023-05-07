@@ -117,6 +117,11 @@ export default function MenuItemCard({ item, deleteItem, setError, setSuccessful
             <Card.Body className="menu-item-card-body">
               <Form.Label>Description:</Form.Label>
               {update === true && (
+              <Form.Control
+                as="textarea" rows={4} cols={50}
+              />
+              )}
+              {update === true && (
                 <Form.Control
                   type="file"
                   onChange={(e) => handleChangeImageInput(e)}
@@ -168,7 +173,7 @@ export default function MenuItemCard({ item, deleteItem, setError, setSuccessful
                 </Button>
 
                 {update &&
-               <Button onClick={handleCancel} variant="btn" className="mt-2 mb-3 mx-2">   Cancel  </Button>
+               <Button onClick={handleCancel} variant="btn" className="mt-3 mb-3 mx-2">   Cancel  </Button>
                 }
 
                 <Button
