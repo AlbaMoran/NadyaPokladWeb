@@ -226,7 +226,7 @@ span.navbar-toggler-icon {
 .not-found-img{
     padding: 0 !important; 
     min-width: 300px; 
-    max-width: 900px; /* ancho de la imagen */
+    max-width: 350px; /* ancho de la imagen */
     max-height: 300px; /* altura de la imagen */
     text-align:center;
     border:#ACD8EC 2px solid;

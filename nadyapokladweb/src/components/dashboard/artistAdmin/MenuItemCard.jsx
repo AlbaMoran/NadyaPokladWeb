@@ -115,14 +115,11 @@ export default function MenuItemCard({ item, deleteItem, setError, setSuccessful
           
           <Col xs={12}>
             <Card.Body className="menu-item-card-body">
-              <Form.Label>Description:</Form.Label>
-              {update === true && (
-              <Form.Control
-                as="textarea" rows={4} cols={50}
-              />
-              )}
+             
+          
               {update === true && (
                 <Form.Control
+                 
                   type="file"
                   onChange={(e) => handleChangeImageInput(e)}
                   id="input-update-image"
@@ -130,9 +127,12 @@ export default function MenuItemCard({ item, deleteItem, setError, setSuccessful
                   size="sm"
                 />
               )}
+               <Form.Label>Description:</Form.Label>
               <Card.Text rows={3} className="textOverflow">
+                
                 {update ? (
                   <Form.Control
+                    as="textarea" rows={4} cols={50}
                     type="text"
                     defaultValue={description}
                     placeholder="Enter the text that will appear next to the image"
