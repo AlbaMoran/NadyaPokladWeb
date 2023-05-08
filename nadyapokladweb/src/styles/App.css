@@ -97,11 +97,48 @@ body {
   transform: scaleX(0);
   transform-origin: top left;
   transition: transform 0.5s ease;
+  
 }
 
 .link-header:hover::before{
     transform: scaleX(1);
 }
+
+
+.link-header-dropdown{
+    position: relative;
+    color: white;
+    text-decoration: none;
+    font-size: 17px;
+   }
+   
+   .dropdown-menu {
+       --bs-dropdown-link-active-bg: #ACD8EC !important;
+   }
+   
+   .link-header-dropdown:hover{
+     color: white;
+   }
+   
+   .link-header-dropdown::before{
+     content: "";
+     position: absolute;
+     display: block;
+     width: 50%;
+     height: 2px;
+     bottom: 0;
+     top: 24px;
+     left: 10;
+     background-color: #ACD8EC;
+     transform: scaleX(0);
+     transform-origin: top left;
+     transition: transform 0.5s ease;
+   }
+   
+   .link-header-dropdown:hover::before{
+       transform: scaleX(1);
+   }
+
 
 
 
@@ -111,7 +148,6 @@ body {
     opacity: 0.85 !important;
     transform: translateX(100%);
 }
-
 
 
 .link-header-menu:hover::before{

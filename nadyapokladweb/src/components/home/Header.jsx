@@ -63,16 +63,16 @@ export const Header = () => {
                       id={`offcanvasNavbarDropdown-expand-${expand}`}
                       onClick={closeOffcanvas}
                     >
-                        <NavDropdown.Item className="link-dropdown link-header" show={toString(show)} href="/works/pianist">
+                        <NavDropdown.Item className="link-dropdown link  link-header-dropdown " show={toString(show)} href="/works/pianist">
                           Pianist 
                         </NavDropdown.Item>
-                        <NavDropdown.Item className="link-dropdown" href="/works/composer">
+                        <NavDropdown.Item className="link-dropdown link link-header-dropdown" href="/works/composer">
                           Composer
                         </NavDropdown.Item>
-                        <NavDropdown.Item className="link-dropdown " href="/works/musical_event_organizer"> 
+                        <NavDropdown.Item className="link-dropdown link link-header-dropdown" href="/works/musical_event_organizer"> 
                           Musical Event Organizer
                         </NavDropdown.Item>
-                        <NavDropdown.Item className="link-dropdown " href="/works/teacher"> 
+                        <NavDropdown.Item className="link-dropdown link link-header-dropdown" href="/works/teacher"> 
                           Teacher
                         </NavDropdown.Item>
                     </NavDropdown>
