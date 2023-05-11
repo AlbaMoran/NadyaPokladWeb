@@ -18,7 +18,7 @@ function Generic() {
             <Route exact path="/theartist" element={<TheArtist />} /> 
             <Route exact path="/works/*" element={<Works />} /> 
             <Route exact path="/upcoming_events" element={<UpcomingEvents />} />    
-            <Route exact path="/Perfomances" element={<Perfomances />} />    
+            <Route exact path="/performances" element={<Perfomances />} />    
             <Route exact path="/contact" element={<Contact />} />       
             <Route exact path="/admin" element={<LoginAdmin />} />
             <Route exact path="/dashboard/*" element={<DashboardAdmin/>}/>
