@@ -24,8 +24,8 @@ export function Footer() {
   }, []);
 
   return (
-    <footer>
-      <Navbar className="footer my-5 " fixed=''>
+    <footer className='mt-3'>
+      <Navbar className="footer" fixed=''>
         <Container className="footerbg " >
           <Navbar.Brand href="#home" className="title footerBrand ">Nadya Poklad</Navbar.Brand>
 

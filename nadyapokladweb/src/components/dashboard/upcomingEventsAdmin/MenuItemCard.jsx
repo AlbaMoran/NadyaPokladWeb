@@ -4,17 +4,26 @@ import { doc, updateDoc } from "firebase/firestore";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { deleteFileFromStorage } from "../FirebaseHooks/Storage";
 import { Card, Col, Form, Button, Modal } from "react-bootstrap";
-
 import '../../../styles/App.css';
+import useWorksItems from "../FirebaseHooks/useWorksItems";
 
 export default function MenuItemCard({ item, deleteItem, setError, setSuccessfull }) {
 
+
+  let { 
+    showConfirmDelete, 
+    update, 
+    setUpdate, 
+    setShowConfirmDelete,
+    handleShowConfirmDelete, 
+    handleClose, 
+    handleCancel, 
+    handleCancelDeletion } = useWorksItems()
+
   const [image, setImage] = useState(item.image);
   const [imageFileName, setImageFileName] = useState(item.imageFileName);
-  // const [active, setActive] = useState(item.active);
   const [itemId, setItemId] = useState(item.id);
   const [cardClass, setCardClass] = useState("");
-  const [update, setUpdate] = useState(false);
   const [date, setDate] = useState(item.date)
   const [description, setDescription] = useState(item.description);
   const [eventType, setEventType] = useState(item.eventType);
@@ -31,17 +40,11 @@ export default function MenuItemCard({ item, deleteItem, setError, setSuccessful
   const [updatedLinkToBuy, setUpdatedLinkToBuy] = useState(item.linkToBuy)
   const [updatedLinkToEvent, setUpdatedLinkToEvent] = useState(item.linkToEvent)
   const [updatedImage, setUpdatedImage] = useState(null);
-  const [showConfirmDelete, setShowConfirmDelete] = useState(false);
+ 
 
   const itemDocRef = doc(db, "UpcomingEvents", itemId);
 
-  const handleShowConfirmDelete = () => {
-    setShowConfirmDelete(true);
-  }
-
-  const handleClose = () => setShowConfirmDelete(false);
-  const handleCancelDeletion = () => setShowConfirmDelete(false)
-
+ 
   const handleDelete = () => {
     deleteItem(itemId, imageFileName);
     setShowConfirmDelete(false);
@@ -94,8 +97,10 @@ export default function MenuItemCard({ item, deleteItem, setError, setSuccessful
           setEventLocation(updatedEventLocation);
           setLinkToBuy(updatedLinkToBuy);
           setLinkToEvent(updatedLinkToEvent);
-
           setSuccessfull("Item updated succesfully!");
+          setTimeout(() => {
+            setSuccessfull(null);
+          }, 5000);
         })
         .catch((error) => {
           setError(error.message);
@@ -279,18 +284,29 @@ export default function MenuItemCard({ item, deleteItem, setError, setSuccessful
         <Col xs={12}>
           <Card.Body className="card-end-buttons">
             <Col style={{ margin: 'auto'  }} >
+            
               <Button onClick={handleShowConfirmDelete} variant="btn" className="mt-2 mb-3">   Delete  </Button>
-              <Button
+              {update &&
+               <Button onClick={handleCancel} variant="btn" className="mt-2 mb-3 mx-2">   Cancel  </Button>
+             }
+              {update 
+                ? 
+                <Button
                 onClick={handleUpdate}
                 variant={update ? "btn" : "btn"}
-                className="mt-2 mx-2 mb-3"
-                >
-                {update ? (
+                className="mt-2 mx-2 mb-3">
                   <>Save</>
-                  ) : (
-                    <>Edit</>
-                    )}
-              </Button>
+                </Button>
+                
+                :
+                <Button
+                onClick={handleUpdate}
+                variant={update ? "btn" : "btn"}
+                className="mt-2 mx-2 mb-3"> 
+                  <>Edit</>
+                </Button>
+                }
+             
             </Col>
           </Card.Body>
         </Col>  

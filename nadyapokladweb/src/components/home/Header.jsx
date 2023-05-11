@@ -28,7 +28,7 @@ export const Header = () => {
     try {
       await logOut();
       setLogged(false);
-      navigate("/login_admin");
+      navigate("/admin");
     } catch (err) {
       console.log(err.message);
     };
@@ -63,17 +63,17 @@ export const Header = () => {
                       id={`offcanvasNavbarDropdown-expand-${expand}`}
                       onClick={closeOffcanvas}
                     >
-                     <NavDropdown.Item className="" show={toString(show)}>
-                          <Link to="/works/pianist" className="link-header" >Pianist</Link>
+                        <NavDropdown.Item className="link-dropdown link  link-header-dropdown " show={toString(show)} href="/works/pianist">
+                          Pianist 
                         </NavDropdown.Item>
-                        <NavDropdown.Item className="link-dropdown">
-                          <Link to="/works/composer" className="link-header">Composer</Link>
+                        <NavDropdown.Item className="link-dropdown link link-header-dropdown" href="/works/composer">
+                          Composer
                         </NavDropdown.Item>
-                        <NavDropdown.Item className="link-dropdown "> 
-                          <Link to="/works/musical_event_organizer" className="link-header">Musical Event Organizer</Link>
+                        <NavDropdown.Item className="link-dropdown link link-header-dropdown" href="/works/musical_event_organizer"> 
+                          Musical Event Organizer
                         </NavDropdown.Item>
-                        <NavDropdown.Item className="link-dropdown "> 
-                          <Link to="/works/teacher" className="link-header">Teacher</Link>
+                        <NavDropdown.Item className="link-dropdown link link-header-dropdown" href="/works/teacher"> 
+                          Teacher
                         </NavDropdown.Item>
                     </NavDropdown>
 
@@ -81,11 +81,7 @@ export const Header = () => {
                     <Navbar.Text className="link"><Link to="/upcoming_events" className="link link-header" onClick={closeOffcanvas}>Upcoming events</Link></Navbar.Text>
                     <Navbar.Text className="link"><Link to="/contact" className="link link-header" onClick={closeOffcanvas}>Contact</Link></Navbar.Text>
                     <Nav className="justify-content-end ">
-                      {!(user && user.email) ?
-                        <Navbar.Text className="link">
-                          <Link to="/login_admin" className="link link-header" onClick={closeOffcanvas}>Login</Link>
-                        </Navbar.Text>
-                        :
+                      {(user && user.email) &&
                         <>
                           <Navbar.Text className="link"> <Link to="/dashboard" className="link link-header">  Dashboard </Link> </Navbar.Text>
                           <Navbar.Text className="link" onClick={handleLogout} > Sign Out     </Navbar.Text>

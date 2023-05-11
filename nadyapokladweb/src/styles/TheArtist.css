@@ -1,7 +1,8 @@
 .image{
     min-width: 290px ; 
+    max-width: 350px;
     min-height:290px;
-     height: 400px; 
+    max-height: 400px; 
     margin: auto;
     margin-top: 10px;
     margin-bottom: 20px;
@@ -104,7 +105,7 @@
   }
   
   #input-update-image {
-    position: relative;
+    /* position: relative; */
     margin-top: 3px;
     margin-bottom: 5px;
     opacity: 0.8;
@@ -155,10 +156,10 @@
       max-width: 40%;
     }
     #input-update-image  {
-        position: absolute;
+        /* position: absolute; */
         right: 62%;
         top: 77%;
-        width: 35%;
+        /* width: 35%; */
         height: 15px;
     }
   }

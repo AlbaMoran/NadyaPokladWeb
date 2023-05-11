@@ -5,10 +5,8 @@ import {
   getDocs,
   doc,
   deleteDoc,
- // where,
   query,
   addDoc,
-  // updateDoc
 } from "firebase/firestore";
 import {
   ref,

@@ -3,26 +3,29 @@ import { Card, Col, Form, Button, Modal } from "react-bootstrap";
 import { db } from "../../../firebase-config";
 import { doc, updateDoc } from "firebase/firestore";
 import '../../../styles/App.css';
-
+import useWorksItems from "../FirebaseHooks/useWorksItems";
 
 export default function MenuItemCard({ item, deleteItem, setError, setSuccessfull }) {
+
+  let { 
+    showConfirmDelete, 
+    update, 
+    setUpdate, 
+    setShowConfirmDelete,
+    handleShowConfirmDelete, 
+    handleClose, 
+    handleCancel, 
+    handleCancelDeletion
+     } = useWorksItems()
+
   const [description, setDescription] = useState(item.description);
   const [contactType, setContactType] = useState(item.contactType);
   const [itemId, setItemId] = useState(item.id);
-  const [update, setUpdate] = useState(false);
   const [cardClass, setCardClass] = useState("");
   const [updatedDescription, setUpdatedDescription] = useState(item.description);
-  const [showConfirmDelete, setShowConfirmDelete] = useState(false);
 
   const itemDocRef = doc(db, "Contact", itemId);
 
-  const handleShowConfirmDelete = () => {
-    setShowConfirmDelete(true);
-  }
-
-  const handleClose = () => setShowConfirmDelete(false);
-  const handleCancelDeletion = () => setShowConfirmDelete(false)
-  
 
   const handleDelete = () => {
     deleteItem(itemId);
@@ -39,6 +42,9 @@ export default function MenuItemCard({ item, deleteItem, setError, setSuccessful
         .then(() => {
           setDescription(updatedDescription);
           setSuccessfull("Item updated succesfully!");
+          setTimeout(() => {
+            setSuccessfull(null);
+          }, 5000);
         })
         .catch((error) => {
           setError(error.message);
@@ -93,11 +99,16 @@ export default function MenuItemCard({ item, deleteItem, setError, setSuccessful
         <Card.Body className="card-end-buttons">
           <Col style={{ margin: 'auto' }} >
 
-            <Button onClick={handleShowConfirmDelete} variant="btn" className="mt-2 mb-3"> Delete</Button>
+            <Button onClick={handleShowConfirmDelete} variant="btn" className="mt-2 mb-2"> Delete</Button>
+           
+            {update &&
+               <Button onClick={handleCancel} variant="btn" className="mt-2 mb-2 mx-1">   Cancel  </Button>
+                }
+            
             <Button
               onClick={handleUpdate}
               variant={update ? "btn" : "btn"}
-              className="mt-2 mx-2 mb-3"
+              className="mt-2 mx-1 mb-2"
             >
               {update ? (
                 <>Save</>
@@ -117,7 +128,7 @@ export default function MenuItemCard({ item, deleteItem, setError, setSuccessful
     <Modal show={showConfirmDelete} onHide={handleClose} className="mt-5 p-4">
       <Modal.Body>
       <h5 className="title">Do you confirm you want to delete this information?</h5>
-        <p >{description}</p>
+        {description}
         <Modal.Footer>
           <Button onClick={handleCancelDeletion} variant="btn">
             Cancel

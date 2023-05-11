@@ -1,33 +1,39 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { db, storage } from "../../../firebase-config";
 import { doc, updateDoc } from "firebase/firestore";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { deleteFileFromStorage } from "../FirebaseHooks/Storage";
 import { Card, Row, Col, Form, Button, Container, Modal } from "react-bootstrap";
 import '../../../styles/App.css';
+import useWorksItems from "../FirebaseHooks/useWorksItems";
 
 export default function MenuItemCard({ item, deleteItem, setError, setSuccessfull }) {
+
+  let { 
+    showConfirmDelete, 
+    update, 
+    setUpdate, 
+    setShowConfirmDelete,
+    handleShowConfirmDelete, 
+    handleClose, 
+    handleCancel, 
+    handleCancelDeletion
+     } = useWorksItems()
+
   const [description, setDescription] = useState(item.description);
   const [orderDisplay, setOrderDisplay] = useState(item.orderDisplay);
   const [image, setImage] = useState(item.image);
   const [imageFileName, setImageFileName] = useState(item.imageFileName);
   const [itemId, setItemId] = useState(item.id);
   
-  const [update, setUpdate] = useState(false);
   const [updatedDescription, setUpdatedDescription] = useState(item.description);
   const [updatedOrderDisplay, setUpdatedOrderDisplay] = useState(item.orderDisplay);
   const [updatedImage, setUpdatedImage] = useState(null);
-  const [showConfirmDelete, setShowConfirmDelete] = useState(false);
+  
 
   const itemDocRef = doc(db, "TheArtist", itemId);
 
-  const handleShowConfirmDelete = () => {
-    setShowConfirmDelete(true);
-  }
-
-  const handleClose = () => setShowConfirmDelete(false);
-  const handleCancelDeletion = () => setShowConfirmDelete(false)
-
+ 
   const handleDelete = () => {
     deleteItem(itemId, imageFileName);
     setShowConfirmDelete(false);
@@ -68,6 +74,7 @@ export default function MenuItemCard({ item, deleteItem, setError, setSuccessful
     if (updatedImage !== null) {
       handleImageUpdate();
       setUpdatedImage(null);
+      
     }
 
     if (isItemsChanged && !isEmptyValues) {
@@ -76,6 +83,10 @@ export default function MenuItemCard({ item, deleteItem, setError, setSuccessful
           setDescription(updatedDescription);
           setOrderDisplay(updatedOrderDisplay);
           setSuccessfull("Item updated succesfully!");
+          setTimeout(() => {
+            setSuccessfull(null);
+          }, 5000);
+          
         })
         .catch((error) => {
           setError(error.message);
@@ -104,9 +115,11 @@ export default function MenuItemCard({ item, deleteItem, setError, setSuccessful
           
           <Col xs={12}>
             <Card.Body className="menu-item-card-body">
-              <Form.Label>Description:</Form.Label>
+             
+          
               {update === true && (
                 <Form.Control
+                 
                   type="file"
                   onChange={(e) => handleChangeImageInput(e)}
                   id="input-update-image"
@@ -114,9 +127,12 @@ export default function MenuItemCard({ item, deleteItem, setError, setSuccessful
                   size="sm"
                 />
               )}
+               <Form.Label>Description:</Form.Label>
               <Card.Text rows={3} className="textOverflow">
+                
                 {update ? (
                   <Form.Control
+                    as="textarea" rows={4} cols={50}
                     type="text"
                     defaultValue={description}
                     placeholder="Enter the text that will appear next to the image"
@@ -155,6 +171,10 @@ export default function MenuItemCard({ item, deleteItem, setError, setSuccessful
                 <Button onClick={handleShowConfirmDelete} variant="btn" className="m-2" size="md">
                   Delete
                 </Button>
+
+                {update &&
+               <Button onClick={handleCancel} variant="btn" className="mt-3 mb-3 mx-2">   Cancel  </Button>
+                }
 
                 <Button
                   onClick={handleUpdate}

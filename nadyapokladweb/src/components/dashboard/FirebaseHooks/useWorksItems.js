@@ -11,6 +11,12 @@ export default function useWorksItems (  ) {
   const [loading, setLoading] = useState(false);
   const [succesfull, setSuccessfull] = useState(null);
   const [categories, setCategories] = useState(categoriesList)
+  const [update, setUpdate] = useState(false);
+  const [showConfirmDelete, setShowConfirmDelete] = useState(false);
+  const [urlError, setUrlError ] = useState(false)
+  const [formValid, setFormValid] = useState(false);
+  const [formError, setFormError] = useState(false);
+  const [fileValid, setFileValid] = useState(true);
 
 
   useEffect(() => {
@@ -31,6 +37,10 @@ export default function useWorksItems (  ) {
     const storageMaxxed = checkFileCountInStorage();
     if (storageMaxxed) {
       setError("Storage is full, please delete item before adding new one.");
+      setTimeout(() => {
+        setError(null);
+      }, 5000);
+    
     } else {
       if (imageFile) {
         uploadImageToStorage(item, imageFile);
@@ -71,6 +81,10 @@ export default function useWorksItems (  ) {
         item.id = docRef.id;
         setData((prevState) => [...prevState, item]);
         setSuccessfull("Item uploaded succesfully!");
+        setTimeout(() => {
+          setSuccessfull(null);
+        }, 5000);
+      
         setError(null);
       })
       .catch((error) => {
@@ -102,6 +116,10 @@ export default function useWorksItems (  ) {
         const newData = data.filter((item) => item.id !== itemId);
         setData(newData);
         setSuccessfull("Item succesfully deleted!");
+        setTimeout(() => {
+          setSuccessfull(null);
+        }, 5000);
+      
         setError(null);
       }
     } else {
@@ -112,11 +130,18 @@ export default function useWorksItems (  ) {
           const newData = data.filter((item) => item.id !== itemId);
           setData(newData);
           setSuccessfull("Item succesfully deleted!");
+          setTimeout(() => {
+            setSuccessfull(null);
+          }, 5000);
           setError(null);
         }
       } else {
         setSuccessfull(null);
         setError("Could not delete image file from storage.");
+        setTimeout(() => {
+          setError(null);
+        }, 5000);
+      
       }
     }
   };
@@ -142,6 +167,44 @@ export default function useWorksItems (  ) {
       .catch((error) => {});
     return deleted;
   };
+  
+
+  function validateUrl(url) {
+    const urlRegex = /^https?:\/\/\S+$/i;
+    
+  
+    if (urlRegex.test(toLowerCase(url))) {
+     
+      setFormError(false)
+      setFormValid(false)
+    }else{
+      setFormError(true)
+      setFormValid(true)
+      setError("Please add https:\\ at beginning");
+      setUrlError(true);
+      setTimeout(() => {
+        setError(null);
+      }, 5000);
+    
+
+    }
+   
+  }
+
+
+  const handleShowConfirmDelete = () => {
+    setShowConfirmDelete(true);
+  }
+
+  const handleCancel = () => {
+    setUpdate(false)
+    
+  };
+
+  const handleClose = () => setShowConfirmDelete(false);
+  const handleCancelDeletion = () => setShowConfirmDelete(false)
+  
+
 
   return {
     data,
@@ -151,6 +214,17 @@ export default function useWorksItems (  ) {
     succesfull,
     deleteItem,
     addItem,
-    categories,
+    categories, setCategories,
+    validateUrl,
+    handleShowConfirmDelete,
+    handleClose,
+    handleCancelDeletion, handleCancel, 
+    update, setUpdate,
+    showConfirmDelete, setShowConfirmDelete,
+    formError, setFormError,
+    formValid, setFormValid,
+    urlError, setUrlError,
+    fileValid, setFileValid,
+    
   };
 }
