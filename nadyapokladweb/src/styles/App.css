@@ -162,7 +162,7 @@ body {
     color: white !important;
 }
 .navbar-nav .dropdown-menu, .navbar-nav {
-    opacity: 80% !important;
+    opacity: 99% !important;
     border: 0px !important;
 }  
 .dropdown-menu {
@@ -275,6 +275,12 @@ span.navbar-toggler-icon {
     margin-left: 0px;
 }
 
+/* PERFORMANCES */
+.video-container {
+    
+    margin: auto !important;
+}
+/* END PERFORMANCES */
 
 
 @media (min-width: 768px) {
