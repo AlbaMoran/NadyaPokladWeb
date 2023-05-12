@@ -26,7 +26,9 @@ export const Home = () => {
             <h4 className='home-h5 mx-2 mt-5 mb-3'> Works </h4><br />
             <Col  >
                 <Row className="responsive-Row " sm="1" md="2" lg="3">
+                    
                     <SectionItemList />
+                
                 </Row>
             </Col>
         </Container>
