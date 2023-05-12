@@ -10,7 +10,7 @@ export function Perfomances() {
   return (
     <>
       <Container>
-        <h4 className='title home-h5 mx-2'>Perfomances</h4><br />
+        <h4 className='title home-h5 mx-2'>Performances</h4><br />
       </Container>
       <Container>
         <Row>

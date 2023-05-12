@@ -77,7 +77,7 @@ export const Header = () => {
                         </NavDropdown.Item>
                     </NavDropdown>
 
-                    <Navbar.Text className="link"> <Link to="/perfomances" className="link link-header" onClick={closeOffcanvas}>Performances</Link></Navbar.Text>
+                    <Navbar.Text className="link"> <Link to="/performances" className="link link-header" onClick={closeOffcanvas}>Performances</Link></Navbar.Text>
                     <Navbar.Text className="link"><Link to="/upcoming_events" className="link link-header" onClick={closeOffcanvas}>Upcoming events</Link></Navbar.Text>
                     <Navbar.Text className="link"><Link to="/contact" className="link link-header" onClick={closeOffcanvas}>Contact</Link></Navbar.Text>
                     <Nav className="justify-content-end ">
